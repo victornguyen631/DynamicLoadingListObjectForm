@@ -1,0 +1,42 @@
+<html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" th:src="@{/js/test.js}"></script>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test screen</title>
+<h1>Doing Test</h1>
+</head>
+<body>
+	<form th:action="@{/endTest}" th:object="${testInfo}" id="testForm"
+	  method="post">
+	  	<input type="hidden" th:field="*{genId}" th:name>
+	    <div th:each="question, i : *{quesions}">
+	    	<input type="hidden" th:field="*{quesions[__${i.index}__].quesId}" th:name>
+
+	    	<p th:text="*{quesions[__${i.index}__].question}"></p>
+
+	    	<input type="radio" th:field="*{quesions[__${i.index}__].userAnswer}" th:value="*{quesions[__${i.index}__].answerA}" />
+	        <label th:for="'quesions' + ${i.index} +'.userAnswer1'" th:text="*{quesions[__${i.index}__].answerA}"></label>
+	        <br/>
+	        <input type="radio" th:field="*{quesions[__${i.index}__].userAnswer}" th:value="*{quesions[__${i.index}__].answerB}" />
+	        <label th:for="'quesions' + ${i.index} +'.userAnswer2' " th:text="*{quesions[__${i.index}__].answerB}"></label>
+	        <br/>
+	        <input type="radio" th:field="*{quesions[__${i.index}__].userAnswer}" th:value="*{quesions[__${i.index}__].answerC}" />
+	        <label th:for="'quesions' + ${i.index} +'.userAnswer3' " th:text="*{quesions[__${i.index}__].answerC}"></label>
+	        <br/>
+	        <input type="radio" th:field="*{quesions[__${i.index}__].userAnswer}" th:value="*{quesions[__${i.index}__].answerD}" />
+	        <label th:for="'quesions' + ${i.index} +'.userAnswer4' " th:text="*{quesions[__${i.index}__].answerD}"></label>
+	    </div>
+
+        <br/>
+        <input type="submit" id="submitButton1" value="Save">
+        <input type="button" id="submitButton2" value="Save by Ajax form">
+	</form>
+
+<div id="dialog" title="Test Result">
+  <p></p>
+</div>
+</body>
+</html>
